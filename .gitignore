@@ -1,0 +1,4 @@
+target/
+.sdd/
+docs/superpowers/
+.DS_Store

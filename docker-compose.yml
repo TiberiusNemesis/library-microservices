@@ -1,0 +1,25 @@
+services:
+  book-service:
+    build:
+      context: ./book-service
+    ports:
+      - "8081:8080"
+    networks:
+      - library-network
+
+  loan-service:
+    build:
+      context: ./loan-service
+    ports:
+      - "8082:8080"
+    environment:
+      BOOK_SERVICE_URL: http://book-service:8080
+    depends_on:
+      - book-service
+    networks:
+      - library-network
+
+networks:
+  library-network:
+    name: library-network
+    driver: bridge
